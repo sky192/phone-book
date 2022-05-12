@@ -4,12 +4,11 @@ const AddContact = ({ addContactHandler }) => {
     const [contact, setContact] = useState({
         firstName: "",
         lastName: "",
-        email: "",
+        phoneNumber: "",
     });
 
     // function for handling changes on user inputs
     const changeHandle = (e) => {
-        console.log(e.target.value);
         setContact({ ...contact, [e.target.name]: e.target.value });
     };
 
@@ -17,7 +16,7 @@ const AddContact = ({ addContactHandler }) => {
     const submitForm = (e) => {
         e.preventDefault();
         addContactHandler(contact);
-        setContact({ firstName: "", lastName: "", email: "" });
+        setContact({ firstName: "", lastName: "", phoneNumber: "" });
     };
 
     return (
@@ -41,11 +40,11 @@ const AddContact = ({ addContactHandler }) => {
                 />
             </div>
             <div>
-                <label htmlFor="">Email</label>
+                <label htmlFor="">Phone Number</label>
                 <input
                     type="text"
-                    name="email"
-                    value={contact.email}
+                    name="phoneNumber"
+                    value={contact.phoneNumber}
                     onChange={changeHandle}
                 />
             </div>
