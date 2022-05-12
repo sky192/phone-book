@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 
-const AddContact = () => {
+const AddContact = ({ addContactHandler }) => {
     const [contact, setContact] = useState({
         firstName: "",
         lastName: "",
         email: "",
     });
 
+    // function for handling changes on user inputs
     const changeHandle = (e) => {
         console.log(e.target.value);
         setContact({ ...contact, [e.target.name]: e.target.value });
     };
 
+    // function for handling submit event
+    const submitForm = (e) => {
+        e.preventDefault();
+        addContactHandler(contact);
+        setContact({ firstName: "", lastName: "", email: "" });
+    };
+
     return (
-        <form action="">
+        <form onSubmit={submitForm}>
             <div>
                 <label htmlFor="">First Name</label>
                 <input
@@ -41,7 +49,7 @@ const AddContact = () => {
                     onChange={changeHandle}
                 />
             </div>
-            <button>Add Contact</button>
+            <button type="submit">Add Contact</button>
         </form>
     );
 };
